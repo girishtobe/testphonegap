@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Hello World</title>
+   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script src="http://192.168.1.8/assistance2/js/commons1.js"></script>
+   <script src="http://192.168.1.8/assistance2/js/commons.js"></script>
+      <script src="http://192.168.1.8/assistance2/js/moment.min.js"></script>
+  <script src="http://192.168.1.8/assistance2/js/moment-timezone-with-data.min.js"></script>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+ <link rel="stylesheet" type="text/css" href="http://192.168.1.8/assistance2/css/curatormobile.css" />
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+    </head>
+    <body>
+    <div id="debugg">is this working? <br>12345</div>
+    <div id="result">phonegap:</div>
+    <div id='page1'>
+    	Email: <input type=text id="email">
+    	Password: <input type=text id="password">
+    	<button onclick='LoginTraditional();'>Login</button>
+    </div>
+    <div id='page2' style="display:none;">
+    		 <form class="search" onsubmit="return false;"  autocomplete="off" >
+		 <input name="keyword" id="keyword" type="text" placeholder="Search..." />
+		 <ul class="results" id='typeahead'>
+<!--			 <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+-->
+		 </ul>
+<div class="mode_box">
+<input type="radio" checked name="mode" value="News">News
+<input type="radio" name="mode"    value="Videos">Videos
+<input type="radio" name="mode"    value="Twitter">Twitter
+	</div>
+	 </form>
+
+	 <div id="debugg">debug thing</div>
+    <div class="curator-container">
+    	<div class='queue_status' id='queue_status'></div>
+    	<div class='clearit' ></div>
+<div class="rowrow-hr">
+<div class="title" id="mode_title">Trending News</div><div class="meta-data"><div class="col time">Post at</div></div><div class="meta-data"><div class="col status">Action</div></div>
+</div>
+<div id='allrows'>
+
+<!--
+<div class="rowrow"><div class="title">Yummy title about chocolate birthday cakes and balloons and cakes and balloons</div><div class="meta-data"><div class="col time">2hrs</div><div class="col status"><a href='#' class='action_href reject' onclick='thisorthat(0,"+i+");'><i class='fa fa-remove fa-fw'></i></a> <a  class='action_href approve' href='#' onclick='thisorthat(1,"+i+");'><i class='fa fa-check  fa-fw'></i></a></div></div></div>
+-->
+<br><br><br>
+	<center>Type in a keyword above to search</center>
+
+</div>
+</div>
+
+
+
+    </div>
+    </body>
+
+</html>
+<script type="text/javascript">
+    $( document ).ready(function() {
+  
+  //GetMySearches();
+  //CheckQueueFullness();
+  //BulkQueue();
+  //alert("loadedjs");
+  //$("#debug").html("loaded");
+//LoginTraditional();
+  $("#keyword").keyup(function(event){
+      if(event.keyCode == 13){
+          //$("#id_of_button").click();
+          //alert("enter");
+          search_now();
+      }
+  });
+
+
+
+$('#keyword').focus(function() {
+    $('#typeahead').css('display','block');
+  }).blur(function() {
+    $('#typeahead').fadeOut('medium');
+  });
+
+});
+
+</script>

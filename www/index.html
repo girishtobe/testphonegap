@@ -1,0 +1,150 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+  <title>Page Title</title> 
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+<!--  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.css" />
+  <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
+-->
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
+     <script src="http://localhost/assistance2/js/commons_mobile.js"></script>
+      <script src="http://localhost/assistance2/js/moment.min.js"></script>
+  <script src="http://localhost/assistance2/js/moment-timezone-with-data.min.js"></script>
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+ <link rel="stylesheet" type="text/css" href="http://localhost/assistance2/css/curatormobile.css" />
+   
+</head> 
+<body> 
+
+<div data-role="page">
+
+  <div data-role="header">
+<a href="#popupMenu" data-rel="popup" data-transition="slideup" class="ui-btn-left ui-corner-all ui-shadow ui-btn-inline ui-icon-gear ui-btn-icon-left ui-btn-a">Change Assistant</a>
+<div data-role="popup" id="popupMenu" data-theme="b">
+<ul id="assistants_list" data-role="listview" data-inset="true" style="min-width:210px;">
+<li data-role="list-divider">Choose an action</li>
+<li><a href="#">View details</a></li>
+<li><a href="#">Edit</a></li>
+<li><a href="#">Disable</a></li>
+<li><a href="#">Delete</a></li>
+</ul>
+</div>
+
+    <a href="#" onclick="LogOut();" data-icon="gear" class="ui-btn-right">Logout</a>
+    <h1 id='bigtitle'>Mr. Social</h1>
+
+
+  </div><!-- /header -->
+
+
+
+
+  <div data-role="content"> 
+
+
+    <div id='page1'>
+      Email: <input type=text id="email">
+      Password: <input type=text id="password">
+      <button onclick='LoginTraditional();'>Login</button>
+    </div>
+    <div id='page2' style="display:none;">
+         <form data-ajax="false" class="search" onsubmit="javascript:return false"  autocomplete="off" >
+     <input name="keyword" id="keyword" type="text" placeholder="Search..." />
+     <ul class="results" id='typeahead'>
+<!--       <li><a href="index.html">Search Result #2<br /><span>Description...</span></a></li>
+-->
+     </ul>
+<div class="mode_box">
+<!--<input type="radio" checked name="mode" value="News">News
+<input type="radio" name="mode"    value="Videos">Videos
+<input type="radio" name="mode"    value="Twitter">Twitter
+-->
+    <fieldset data-role="controlgroup" data-type="horizontal">
+        <input type="radio" name="mode" id="radio-choice-h-2a" value="News" checked="checked">
+        <label for="radio-choice-h-2a">News</label>
+        <input type="radio" name="mode" id="radio-choice-h-2b" value="Videos">
+        <label for="radio-choice-h-2b">Videos</label>
+        <input type="radio" name="mode" id="radio-choice-h-2c" value="Twitter">
+        <label for="radio-choice-h-2c">Twitter</label>
+    </fieldset>
+  </div>
+   </form>
+
+      <div class='clearit' ></div>
+<!--<div class="rowrow-hr">
+<div class="title" id="mode_title">Trending News</div><div class="meta-data"><div class="col time">Post at</div></div><div class="meta-data"><div class="col status">Action</div></div>
+</div>-->
+<div id='allrows'>
+
+<!--
+<div class="rowrow"><div class="title">Yummy title about chocolate birthday cakes and balloons and cakes and balloons</div><div class="meta-data"><div class="col time">2hrs</div><div class="col status"><a href='#' class='action_href reject' onclick='thisorthat(0,"+i+");'><i class='fa fa-remove fa-fw'></i></a> <a  class='action_href approve' href='#' onclick='thisorthat(1,"+i+");'><i class='fa fa-check  fa-fw'></i></a></div></div></div>
+-->
+<br><br><br><center>Type in a keyword above to search</center><br><br><br><br><br><br><br><br><br><br><br><br>
+<!--  <a href="#" onclick="window.open('http://apache.org', '_system', 'location=no');">Test opening</a>
+-->
+</div>
+
+
+
+    </div>
+
+      <div class='clearit' ></div>
+    <!--  <div class='queue_status' id='queue_status'></div>
+-->
+
+  </div><!-- /content -->
+
+  <!--<div data-role="footer">
+    <h4>Page Footer</h4>
+  </div>
+-->
+  <!-- /footer -->
+</div><!-- /page -->
+
+</body>
+<script type="text/javascript">
+    $( document ).ready(function() {
+  CheckIfInSession();
+  
+  //GetMySearches();
+  //CheckQueueFullness();
+  //BulkQueue();
+  //alert("loadedjs");
+  //$("#debug").html("loaded");
+//LoginTraditional();
+  $("#keyword").keyup(function(event){
+      if(event.keyCode == 13){
+          //$("#id_of_button").click();
+          //alert("enter");
+          $("#keyword").blur(); 
+          search_now();
+          return false;
+      }
+  });
+
+
+
+$('#keyword').focus(function() {
+    $('#typeahead').css('display','block');
+  }).blur(function() {
+    $('#typeahead').fadeOut('medium');
+  });
+
+});
+
+$("input[name='mode']").change(function(){
+    // Do something interesting here
+    //if ()
+    //$('#typeahead').fadeOut('medium');
+    search_now();
+});
+</script>
+</html>
